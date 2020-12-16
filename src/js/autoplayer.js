@@ -21,12 +21,12 @@ if (this.$auto_re_player == null) {
         observer.observe(el[0], {
             attributes: true
         });
-        console.log("Auto re-player is on")
+        console.log("Autoplay is on")
     }
 
     function stop() {
         observer.disconnect()
-        console.log("Auto re-player is off")
+        console.log("Autoplay is off")
     }
 
     this.$auto_re_player = {

@@ -7,9 +7,11 @@ function exec(c) {
 $(document).ready(function () {
     let chk = $('#toggle')
 
-    chrome.tabs.executeScript({
-        file: "js/autoplayer.js"
-    });
+    if (chrome.tabs) {
+        chrome.tabs.executeScript({
+            file: "js/autoplayer.js"
+        });
+    }
 
     chrome.storage.sync.get(['autoreplay'], function (result) {
         chk[0].checked = result.autoreplay;
@@ -18,13 +20,11 @@ $(document).ready(function () {
         }
     });
 
-    chk.change(function (e) {
+    chk.change(function (_) {
         let action = chk[0].checked ? 'start' : 'stop'
 
         exec(`this.$auto_re_player.${action}()`)
 
-        chrome.storage.sync.set({ 'autoreplay': chk[0].checked }, function () {
-            console.log('Replay is ' + chk[0].checked ? "On" : "Off");
-        });
+        chrome.storage.sync.set({ 'autoreplay': chk[0].checked }, null);
     })
 })
