@@ -5,6 +5,16 @@ function exec(c) {
 }
 
 $(document).ready(function () {
+    exec(`var autonavBtn = document.querySelector("button[data-tooltip-target-id='ytp-autonav-toggle-button']")
+    if (autonavBtn &&
+        autonavBtn.children.length > 0 &&
+        autonavBtn.children[0].children.length > 0 &&
+        autonavBtn.children[0].children[0].ariaChecked == "true") {
+
+        console.log("Autonav enabled, disabling...")
+        autonavBtn.click()
+    }`);
+
     let chk = $('#toggle')
 
     if (chrome.tabs) {
